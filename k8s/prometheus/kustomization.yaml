@@ -1,0 +1,7 @@
+namespace: observability
+
+resources:
+  - ./cluster-role.yaml
+  - ./config-map.yaml
+  - ./deployment.yaml
+  - ./service.yaml

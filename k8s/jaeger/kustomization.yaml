@@ -1,0 +1,5 @@
+namespace: observability
+
+resources:
+  - ./install.yaml
+  - ./deployment.yaml

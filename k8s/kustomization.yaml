@@ -1,0 +1,9 @@
+resources:
+  - ./api
+  - ./postgres
+  - ./redis
+  - ./jaeger
+  - ./prometheus
+  - ./loki
+  - ./public-namespace.yaml
+  - ./observability-namespace.yaml

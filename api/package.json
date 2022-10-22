@@ -1,0 +1,48 @@
+{
+  "name": "@mck-p/secret-santa-api",
+  "version": "0.0.0",
+  "description": "API for Queries/Commands into the Secret Santa System",
+  "main": "dist/entry.js",
+  "scripts": {
+    "test": "echo \"SET UP!!!\"; exit 0;",
+    "dev": "nodemon --ext \".ts\" --watch \"./src\" --exec \"ts-node -r tsconfig-paths/register src/entry.ts\"",
+    "build": "tsc",
+    "check-types": "tsc --noEmit",
+    "start": "node -r tsconfig-paths/register dist/entry.js"
+  },
+  "author": "Tim Roberts <tim@mck-p.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/getenv": "^1.0.0",
+    "@types/koa": "^2.13.5",
+    "@types/koa-helmet": "^6.0.4",
+    "@types/koa__cors": "^3.3.0",
+    "@types/koa__router": "^12.0.0",
+    "@types/node": "^18.11.3",
+    "nodemon": "^2.0.20",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  },
+  "dependencies": {
+    "@koa/cors": "^4.0.0",
+    "@koa/router": "^12.0.0",
+    "@opentelemetry/api": "^1.2.0",
+    "@opentelemetry/api-metrics": "^0.33.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.33.1",
+    "@opentelemetry/exporter-prometheus": "^0.33.0",
+    "@opentelemetry/exporter-trace-otlp-http": "^0.33.0",
+    "@opentelemetry/instrumentation": "^0.33.0",
+    "@opentelemetry/instrumentation-koa": "^0.32.0",
+    "@opentelemetry/instrumentation-pino": "^0.32.0",
+    "@opentelemetry/sdk-metrics": "^0.33.0",
+    "@opentelemetry/sdk-node": "^0.33.0",
+    "@opentelemetry/sdk-trace-node": "^1.7.0",
+    "getenv": "^1.0.0",
+    "koa": "^2.13.4",
+    "koa-helmet": "^6.1.0",
+    "pino": "^8.7.0",
+    "pino-loki": "^2.0.3",
+    "protobufjs": "^7.1.2",
+    "tsconfig-paths": "^4.1.0"
+  }
+}
