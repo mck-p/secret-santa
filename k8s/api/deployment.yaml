@@ -16,6 +16,17 @@ spec:
       - name: secret-santa-api
         image: mckp/secret-santa-api  # or just image: redis
         imagePullPolicy: Never
+        env:
+          - name: DB_USER
+            value: admin
+          - name: DB_PASS
+            value: psltest
+          - name: DB_HOST
+            value: postgres.default
+          - name: DB_PORT
+            value: "5432"
+          - name: DB_NAME
+            value: "secret_santa"
         ports:
         - containerPort: 5000
         - containerPort: 9464

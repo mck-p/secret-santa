@@ -2,6 +2,7 @@ import helmet from "koa-helmet";
 import cors from "@koa/cors";
 
 import * as HTTPErrors from "@app/http/errors";
+import * as SystemErrors from "@app/errors";
 
 import type { Middleware } from "koa";
 
@@ -58,4 +59,31 @@ export const notFoundIsError = (): Middleware => {
   };
 
   return notFoundIsError;
+};
+
+export const mapSystemErrorsToHTTPErrors =
+  (): Middleware => async (ctx, next) => {
+    try {
+      await next();
+    } catch (e) {
+      const err = e as unknown as Error;
+
+      if (err instanceof SystemErrors.NotImplemented) {
+        throw new HTTPErrors.NotImplemented(err);
+      }
+
+      throw new HTTPErrors.Internal(err);
+    }
+  };
+
+const launchDate = new Date().toISOString();
+
+export const appMetadataHeaders = (): Middleware => (ctx, next) => {
+  ctx.set({
+    "X-Version": "0.0.1-DEVELOPMENT",
+    "X-Name": "Secret Santa",
+    "X-Launch-Date": launchDate,
+  });
+
+  return next();
 };

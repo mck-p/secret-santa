@@ -1,9 +1,16 @@
 resources:
+  # Our API
   - ./api
+  # Our DB
   - ./postgres
+  # Our Cache
   - ./redis
+  # Our Tracing
   - ./jaeger
+  # Our MEtrics
   - ./prometheus
-  - ./loki
+  # Our Logs
+  - ./promtail
+  # Our Namespaces
   - ./public-namespace.yaml
   - ./observability-namespace.yaml

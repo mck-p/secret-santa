@@ -9,8 +9,8 @@ import * as Middleware from "@app/http/middleware";
 
 class Server {
   #app: Koa;
-  #instance?: HTTPInstance;
   #router: Router;
+  #instance?: HTTPInstance;
 
   constructor() {
     this.#app = new Koa();
@@ -18,11 +18,22 @@ class Server {
     this.#app
       .use(Middleware.errorHandler({ returnStack: true }))
       .use(Middleware.notFoundIsError())
+      .use(Middleware.appMetadataHeaders())
       .use(Middleware.security())
       .use(Middleware.corsPolicy())
-      .use(healthcheck);
+      .use(Middleware.mapSystemErrorsToHTTPErrors());
 
     this.#router = new Router();
+
+    this.#router.get("/healthcheck", healthcheck);
+
+    this.#app.use(this.#router.routes());
+  }
+
+  registerRouter(router: Router, prefix?: string) {
+    this.#router.use(router.routes());
+
+    return this;
   }
 
   async start(port: number) {

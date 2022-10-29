@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# https://grafana.com/docs/loki/latest/installation/microservices-helm/
+
+
+set -e;
+
+helm upgrade  promtail grafana/promtail -f k8s/promtail/values.yaml

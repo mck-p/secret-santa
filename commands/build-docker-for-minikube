@@ -1,0 +1,33 @@
+#!/bin/sh
+
+set -e;
+
+# set our docker context to minikube
+eval $(minikube docker-env) 
+
+#
+# Args in order
+#
+
+#
+# REQUIRED: repo:tag
+#
+TAG_NAME="$1"
+#
+# REQUIRED: ./context-for/dockerfile
+#
+DOCKERFILE_CONTEXT="$2"
+#
+# OPTIONAL: ./Dockefile/to/use
+#           DEFAULTS: <DOCKERFILE_CONTEXT>/Dockerfile
+#
+DOCKERFILE_PATH="$3"
+
+if [ -z "$DOCKERFILE_PATH" ]
+then
+  DOCKERFILE_PATH="./$DOCKERFILE_CONTEXT/Dockerfile"
+fi
+
+# Uncomment for debug
+# echo "docker build -t $TAG_NAME -f $DOCKERFILE_PATH $DOCKERFILE_CONTEXT"
+docker build -t $TAG_NAME -f $DOCKERFILE_PATH $DOCKERFILE_CONTEXT
