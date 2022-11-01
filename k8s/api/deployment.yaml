@@ -27,6 +27,8 @@ spec:
             value: "5432"
           - name: DB_NAME
             value: "secret_santa"
+          - name: JWT_SIGNING_SECRET
+            value: super secret value
         ports:
         - containerPort: 5000
         - containerPort: 9464
