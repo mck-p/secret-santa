@@ -17,6 +17,14 @@ export const connect = () =>
 
 export const query = (query: any, args: any) => pool?.query(query, args);
 
+export const getPool = () => {
+  if (!pool) {
+    throw new Error("Cannot get a pool that is not created");
+  }
+
+  return pool;
+};
+
 export const isHealthy = () => {
   Metrics.datbaseHealthycheckRequested();
 
